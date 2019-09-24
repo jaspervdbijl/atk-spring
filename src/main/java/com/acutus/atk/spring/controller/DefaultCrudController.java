@@ -42,6 +42,7 @@ public abstract class DefaultCrudController {
                 .map(p -> new Reflections(p).getSubTypesOf(AbstractAtkEntity.class))
                 .flatMap(l -> l.stream())
                 .collect(Collectors.toList());
+
         importMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         importMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
         importMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
@@ -59,10 +60,17 @@ public abstract class DefaultCrudController {
         return path.substring(path.lastIndexOf("/") + 1);
     }
 
-    private Optional<Class<? extends AbstractAtkEntity>> mapEntityFromPath(String path) {
+    /**
+     * override to implement custom data transfer objects
+     * @param path
+     * @return
+     */
+    public Optional<Class<? extends AbstractAtkEntity>> mapEntityFromPath(String path) {
         String entityName = extractLastResourceFromPath(path);
         Optional<Class<? extends AbstractAtkEntity>> entityClass =
-                entityClasses.stream().filter(e -> e.getSimpleName().equalsIgnoreCase(entityName + "Entity")).findFirst();
+                entityClasses.stream()
+                        .filter(e -> e.getSimpleName().equalsIgnoreCase(entityName + "Entity"))
+                        .findFirst();
         return entityClass;
     }
 
@@ -70,7 +78,6 @@ public abstract class DefaultCrudController {
         Optional<Class<? extends AbstractAtkEntity>> entityClass = mapEntityFromPath(path);
         Assert.isTrue(entityClass.isPresent(), () -> new HttpException(HttpStatus.NOT_FOUND));
         return entityClass.get();
-
     }
 
     /**
@@ -96,7 +103,8 @@ public abstract class DefaultCrudController {
      *
      * @param entity
      */
-    public void beforeUpate(AbstractAtkEntity entity) {}
+    public void beforeUpdate(AbstractAtkEntity entity) {
+    }
 
     @SneakyThrows
     @RequestMapping(method = RequestMethod.PUT, path = "**")
@@ -109,7 +117,7 @@ public abstract class DefaultCrudController {
         Assert.isTrue(entity.query().findById(getDataSource()).isPresent()
                 , () -> new HttpException(HttpStatus.NOT_FOUND));
 
-        beforeUpate(entity);
+        beforeUpdate(entity);
 
         entity.persist().update(getDataSource());
 
