@@ -193,7 +193,7 @@ public abstract class DefaultCrudController {
 
         AbstractAtkEntity entity = getOne(request.getRequestURI());
         beforeDelete(entity);
-        entity.persist().delete(getDataSource());
+        entity.persist().deleteOnId(getDataSource());
 
     }
 }
