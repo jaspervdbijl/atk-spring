@@ -5,10 +5,12 @@ import java.io.InputStream;
 import com.acutus.atk.io.IOUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 import static com.acutus.atk.util.AtkUtil.handle;
 
+@Component
 public class FileResourceProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName)
             throws BeansException {
