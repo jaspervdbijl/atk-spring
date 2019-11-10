@@ -27,7 +27,7 @@ public class AuditHelper {
         if (atkEntity != null && atkEntity.auditTable()) {
             AtkEnFields changed = insert ? entity.getEnFields().getSet() : entity.getEnFields().getChanged();
             AuditTableEntity auditTableEntity = new AuditTableEntity()
-                    .setTableName(entity.getTableName())
+                    .setTableN(entity.getTableName())
                     .persist().insert(connection);
             for (AtkEnField field : changed) {
                 new AuditTableFieldEntity().setAuditTableId(auditTableEntity.getId())

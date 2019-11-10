@@ -14,6 +14,6 @@ public class AuditTable {
     @UID @Id
     private String id;
 
-    private String tableName;
+    private String tableN;
 
 }
