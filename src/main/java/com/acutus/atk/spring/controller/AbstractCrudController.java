@@ -9,7 +9,6 @@ import com.acutus.atk.reflection.Reflect;
 import com.acutus.atk.reflection.ReflectMethods;
 import com.acutus.atk.util.Assert;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
@@ -67,7 +66,7 @@ public interface AbstractCrudController<T extends AbstractAtkEntity> {
 
         ids.get(0).set(id);
 
-        Optional<T> entity = (Optional<T>) getQuery(instance).getBySet(getDataSource());
+        Optional<T> entity = (Optional<T>) getQuery(instance).get(getDataSource());
         Assert.isTrue(entity.isPresent(),() -> new RuntimeException("Entity not found"));
         return entity.get();
     }
