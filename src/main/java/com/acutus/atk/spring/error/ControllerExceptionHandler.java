@@ -1,6 +1,6 @@
 package com.acutus.atk.spring.error;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,7 +12,7 @@ import java.util.logging.Level;
  * Created by jaspervdb on 2016/05/24.
  */
 @ControllerAdvice
-@Log
+@Slf4j
 public class ControllerExceptionHandler {
 
     @ExceptionHandler
