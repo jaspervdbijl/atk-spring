@@ -18,7 +18,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler
     @ResponseBody
     public ResponseEntity handleJwtException(HttpException ex) {
-        log.log(Level.INFO, ex.toString());
+        log.warn(ex.toString());
         return new ResponseEntity(ex.getMessage(), ex.getStatus());
     }
 
