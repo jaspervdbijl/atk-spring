@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 import java.util.TimeZone;
 
 @Component
-public class LocalDateTimeConverter implements Converter<Long, LocalDateTime> {
+public class StringToLocalDateTimeConverter implements Converter<String, LocalDateTime> {
     @Override
-    public LocalDateTime convert(Long source) {
-        return source != null ? LocalDateTime.ofInstant(Instant.ofEpochMilli(source),
+    public LocalDateTime convert(String source) {
+        return source != null ? LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(source)),
                 TimeZone.getDefault().toZoneId()) : null;
     }
 }
