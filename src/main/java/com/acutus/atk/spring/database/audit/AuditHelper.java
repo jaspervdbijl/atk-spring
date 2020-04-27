@@ -4,6 +4,8 @@ import com.acutus.atk.db.AbstractAtkEntity;
 import com.acutus.atk.db.AtkEnField;
 import com.acutus.atk.db.AtkEnFields;
 import com.acutus.atk.db.processor.AtkEntity;
+import com.acutus.atk.spring.database.audit.AuditTableEntity;
+import com.acutus.atk.spring.database.audit.AuditTableFieldEntity;
 
 import java.sql.Connection;
 import java.util.Base64;
