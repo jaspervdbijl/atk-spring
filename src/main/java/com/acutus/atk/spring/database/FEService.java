@@ -16,7 +16,7 @@ import static com.acutus.atk.spring.database.audit.AuditHelper.audit;
 public class FEService {
 
     static {
-        setPersistCallback((connection, entity, isInsert) -> audit(connection,entity, isInsert));
+        setPersistCallback((connection, entity, isInsert) -> audit(connection, entity, isInsert));
     }
 
     public static void maintainPackages(Connection connection, String... packages) {
@@ -28,7 +28,11 @@ public class FEService {
     }
 
     public static void maintainPackages(DataSource dataSource, String... packages) {
-        run(dataSource, c -> maintainPackages(c,packages));
+        run(dataSource, c -> maintainPackages(c, packages));
+    }
+
+    public static void maintainClasses(DataSource dataSource, Class... classes) {
+        run(dataSource, c -> FEHelper.maintainDataDefinition(c, classes));
     }
 
 }
