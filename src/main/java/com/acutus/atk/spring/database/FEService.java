@@ -2,6 +2,7 @@ package com.acutus.atk.spring.database;
 
 import com.acutus.atk.db.AbstractAtkEntity;
 import com.acutus.atk.db.fe.FEHelper;
+import com.acutus.atk.db.processor.AtkEntity;
 import com.acutus.atk.spring.util.Reflections;
 
 import javax.sql.DataSource;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 import static com.acutus.atk.db.Persist.setPersistCallback;
 import static com.acutus.atk.db.sql.SQLHelper.run;
 import static com.acutus.atk.spring.database.audit.AuditHelper.audit;
+import static com.acutus.atk.util.AtkUtil.handle;
 
 public class FEService {
 
@@ -24,6 +26,7 @@ public class FEService {
                 .stream()
                 .map(p -> new Reflections(p).getSubTypesOf(AbstractAtkEntity.class))
                 .flatMap(l -> l.stream())
+                .filter(a -> handle(() -> a.getConstructor().newInstance().getEntityType() == AtkEntity.Type.TABLE))
                 .collect(Collectors.toList()));
     }
 
