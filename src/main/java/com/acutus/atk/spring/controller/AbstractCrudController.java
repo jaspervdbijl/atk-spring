@@ -1,27 +1,22 @@
 package com.acutus.atk.spring.controller;
 
-import com.acutus.atk.db.*;
+import com.acutus.atk.db.AbstractAtkEntity;
+import com.acutus.atk.db.AtkEnField;
+import com.acutus.atk.db.AtkEnFields;
+import com.acutus.atk.db.Query;
 import com.acutus.atk.db.sql.Filter;
-import com.acutus.atk.reflection.Reflect;
-import com.acutus.atk.reflection.ReflectMethods;
 import com.acutus.atk.util.Assert;
 import com.acutus.atk.util.call.CallOne;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.lang.Collections;
 import lombok.SneakyThrows;
 import org.springframework.beans.SimpleTypeConverter;
-import org.springframework.beans.TypeConverter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.sql.DataSource;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static com.acutus.atk.db.sql.Filter.Type.AND;
 
@@ -72,8 +67,7 @@ public interface AbstractCrudController<T extends AbstractAtkEntity> {
     @SneakyThrows
     @RequestMapping(method = RequestMethod.GET, path = "/queryBySet")
     public default @ResponseBody
-    List<T> queryBySet(@RequestBody String entity
-            , @RequestParam(required = false) String orderBy, @RequestParam(required = false) Boolean orderByAsc) {
+    List<T> queryBySet(@RequestBody String entity, @RequestParam(required = false) String orderBy, @RequestParam(required = false) Boolean orderByAsc) {
         T instance = mapper.readValue(entity, getType());
         Query query = instance.query();
         if (orderBy != null) {
