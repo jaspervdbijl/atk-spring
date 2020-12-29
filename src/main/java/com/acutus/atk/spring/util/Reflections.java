@@ -4,9 +4,11 @@ import com.acutus.atk.util.call.CallNilRet;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
+import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
 import java.lang.annotation.Annotation;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.acutus.atk.util.AtkUtil.handle;
@@ -41,10 +43,23 @@ public class Reflections {
         return getTypesAnnotatedWith(path,DEF_PROVIDER,type);
     }
 
+    public <T> List<Class<T>> getByRegEx(String regex) {
+        return getByRegEx(path,DEF_PROVIDER,regex);
+    }
+
+
     private static <T> List<Class<T>> getTypesAnnotatedWith(String path
             , ClassPathScanningCandidateComponentProvider provider, final Class<? extends Annotation> type) {
         provider.resetFilters(false);
         provider.addIncludeFilter(new AnnotationTypeFilter(type));
+        return (List<Class<T>>) provider.findCandidateComponents(path).stream()
+                .map(b -> handle(() -> ((T) Class.forName(b.getBeanClassName())))).collect(Collectors.toList());
+    }
+
+    private static <T> List<Class<T>> getByRegEx(String path
+            , ClassPathScanningCandidateComponentProvider provider, String regEx) {
+        provider.resetFilters(false);
+        provider.addIncludeFilter(new RegexPatternTypeFilter(Pattern.compile(regEx)));
         return (List<Class<T>>) provider.findCandidateComponents(path).stream()
                 .map(b -> handle(() -> ((T) Class.forName(b.getBeanClassName())))).collect(Collectors.toList());
     }

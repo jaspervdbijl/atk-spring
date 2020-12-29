@@ -18,6 +18,7 @@ public class TokenGenerateHelper {
     @Autowired
     AbstractServerKeys keys;
 
+    @Getter
     @Value("${token.expiry_time:31536000}")
     private int expiryTime;
 
