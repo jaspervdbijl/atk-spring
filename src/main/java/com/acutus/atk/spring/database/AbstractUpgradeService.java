@@ -21,16 +21,28 @@ import static com.acutus.atk.db.sql.SQLHelper.run;
 @Slf4j
 public abstract class AbstractUpgradeService {
 
+    @Value("${database.upgrade.enabled:false}")
+    private boolean upgradeEnabled;
+
     @Value("${database.liquibase.enabled:false}")
     private boolean liquibaseEnabled;
 
     @Autowired
     DataSource dataSource;
 
-    public abstract void maintainPackages();
+    protected abstract String[] getPackages();
 
+    @PostConstruct
+    @SneakyThrows
+    public void maintainPackages() {
+        if (upgradeEnabled) {
+            runLiquibase("liquibase/masterlog/db.changelog.premaster.xml");
+            FEService.maintainPackages(dataSource, getPackages());
+            runLiquibase("liquibase/masterlog/db.changelog.postmaster.xml");
+        }
+    }
 
-    protected  void runLiquibase(String file) {
+    private void runLiquibase(String file) {
         if (liquibaseEnabled) {
             log.info("Start runLiquibase master");
             run(dataSource, connection -> {
