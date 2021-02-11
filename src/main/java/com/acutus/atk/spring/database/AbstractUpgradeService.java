@@ -42,7 +42,7 @@ public abstract class AbstractUpgradeService {
         }
     }
 
-    private void runLiquibase(String file) {
+    protected void runLiquibase(String file) {
         if (liquibaseEnabled) {
             log.info("Start runLiquibase master");
             run(dataSource, connection -> {
