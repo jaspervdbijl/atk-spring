@@ -83,7 +83,7 @@ public interface AbstractCrudController<T extends AbstractAtkEntity> {
 
     @RequestMapping(method = RequestMethod.POST)
     public default void create(@RequestBody T entity) {
-        getInstance().persist().insert(getDataSource());
+        entity.persist().insert(getDataSource());
     }
 
     @RequestMapping(method = RequestMethod.PUT)
