@@ -1,15 +1,13 @@
 package com.acutus.atk.spring.error;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.http.HttpStatus;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(callSuper=false)
 public class HttpException extends RuntimeException {
 
     private HttpStatus status;
