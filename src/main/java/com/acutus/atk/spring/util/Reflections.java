@@ -1,11 +1,13 @@
 package com.acutus.atk.spring.util;
 
 import com.acutus.atk.util.call.CallNilRet;
+import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 
+import javax.persistence.Table;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -34,7 +36,6 @@ public class Reflections {
     }
 
     public <T> List<Class<T>> getTypesAnnotatedWith(final Class<? extends Annotation> type) {
-        provider.resetFilters(false);
         return getTypesAnnotatedWith(path,provider,type);
 
     }
