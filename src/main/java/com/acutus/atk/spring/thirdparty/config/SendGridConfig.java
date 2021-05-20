@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class SendGridConfig {
 
-    @Value("${sendgrid.key.post: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}")
+    @Value("${sendgrid.key.post}")
     String key;
 
     @Bean("sendGridRestTemplate")
