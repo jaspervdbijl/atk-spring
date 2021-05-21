@@ -15,7 +15,7 @@ public class SendGridConfig {
     String key;
 
     @Bean("sendGridRestTemplate")
-    public RestTemplate getRestTemplate() {
+    public RestTemplate getSendGridRestTemplate() {
         var factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(3000);
         factory.setReadTimeout(3000);
