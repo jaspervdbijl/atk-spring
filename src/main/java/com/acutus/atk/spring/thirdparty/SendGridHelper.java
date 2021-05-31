@@ -38,7 +38,7 @@ public class SendGridHelper {
     protected String key;
 
     @Value("${receipt.mail.noLogo::https://prod0storage0pub.blob.core.windows.net/images/icon-90x90.png}")
-    protected  String noLogoPath;
+    protected String noLogoPath;
 
     @Autowired
     @Qualifier("sendGridRestTemplate")
@@ -84,7 +84,9 @@ public class SendGridHelper {
 
     public Response sendEmailPlainTxt(String address, String subject, String txt, Attachments attachments) {
         Mail mail = new Mail(new Email(fromAddress), subject, new Email(address), new Content("text/plain", txt));
-        mail.addAttachments(attachments);
+        if (attachments != null) {
+            mail.addAttachments(attachments);
+        }
         Response response = send(mail);
         Assert.isTrue(response.getStatusCode() >= 200 && response.getStatusCode() < 300, "Mail failed with error " + response.getBody());
         return response;
