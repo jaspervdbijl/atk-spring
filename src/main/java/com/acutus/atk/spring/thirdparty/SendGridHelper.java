@@ -92,9 +92,9 @@ public class SendGridHelper {
         return response;
     }
 
-    public void postEmail(String templateId, List<Personalization> personalizationList) {
+    public void postEmail(Boolean maySend, String templateId, List<Personalization> personalizationList) {
         Assert.notNull(templateId, "Template Id must be supplied");
-        if (personalizationList.isEmpty()) {
+        if (personalizationList.isEmpty() || !maySend) {
             return;
         }
 
