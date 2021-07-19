@@ -105,7 +105,7 @@ public class SendGridHelper {
         try {
             sendGridRestTemplate.postForEntity(sendGridUrl, new HttpEntity<>(mail, sendGridRestTemplateHeaders), String.class);
         } catch (Exception exception) {
-            log.error(exception.getMessage(), exception.getMessage());
+            log.error(exception.getMessage(), exception);
         }
     }
 }
