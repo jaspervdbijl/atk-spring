@@ -79,6 +79,7 @@
             <artifactId>liquibase-hibernate5</artifactId>
             <version>3.6</version>
         </dependency>
+
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
