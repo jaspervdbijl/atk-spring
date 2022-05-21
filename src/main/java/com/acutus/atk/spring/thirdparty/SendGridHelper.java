@@ -65,7 +65,7 @@ public class SendGridHelper {
     }
 
     public Response sendEmail(String address, String fromAddress, String subject, String html) {
-        log.info("MAIL {} {} {}", address, fromAddress, subject);
+        log.debug("MAIL {} {} {}", address, fromAddress, subject);
         Mail mail = new Mail(new Email(fromAddress), subject, new Email(address), new Content("text/html", html));
         return send(mail);
     }
