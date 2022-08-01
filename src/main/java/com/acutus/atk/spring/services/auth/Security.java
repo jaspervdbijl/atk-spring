@@ -3,19 +3,34 @@ package com.acutus.atk.spring.services.auth;
 
 import com.acutus.atk.io.IOUtil;
 import com.acutus.atk.util.StringUtils;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.*;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by jaspervdb on 2016/07/28.
  */
+@Component
 public class Security {
+
+    @Value("${password.strength.regex:^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=\\S+$).{8,40}$")
+    private String passportStrengthRegEx = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=\\S+$).{8,40}$";
+
+    @Getter
+    @Value("${password.strength.message:password is at least 8 characters long. Has at least one special, one uppercase and one lowercase character}")
+    private String passportStrengthMsg;
+
+    private Pattern passwordPattern = Pattern.compile(passportStrengthRegEx);
 
     public static PublicKey generateRSAPublicKey(InputStream is) {
         try {
@@ -64,6 +79,10 @@ public class Security {
         md.update(data);
         byte[] digest = md.digest();
         return StringUtils.bytesToHex(digest).toUpperCase();
+    }
+
+    public boolean validatePasswordStrength(String password) {
+        return passwordPattern.matcher(password).matches();
     }
 
 }
