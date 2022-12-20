@@ -21,10 +21,10 @@ import static com.acutus.atk.db.sql.SQLHelper.run;
 @Slf4j
 public abstract class AbstractUpgradeService {
 
-    @Value("${database.upgrade.enabled:true}")
+    @Value("${database.upgrade.enabled:false}")
     private boolean upgradeEnabled;
 
-    @Value("${database.liquibase.enabled:true}")
+    @Value("${database.liquibase.enabled:false}")
     private boolean liquibaseEnabled;
 
     @Autowired
