@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -31,14 +32,11 @@ public class SendGridHelper {
     @Autowired
     protected DataSource dataSource;
 
-    @Value("${receipt.mail.from:support@kwebo.co.za}")
+    @Value("${receipt.mail.from:noreply@cellstop.org}")
     protected String fromAddress;
 
     @Value("${sendgrid.key}")
     protected String key;
-
-    @Value("${receipt.mail.noLogo::https://prod0storage0pub.blob.core.windows.net/images/icon-90x90.png}")
-    protected String noLogoPath;
 
     @Autowired
     @Qualifier("sendGridRestTemplate")
@@ -83,7 +81,19 @@ public class SendGridHelper {
     }
 
     public Response sendEmailPlainTxt(String address, String subject, String txt, Attachments attachments) {
-        Mail mail = new Mail(new Email(fromAddress), subject, new Email(address), new Content("text/plain", txt));
+        Personalization personalization = new Personalization();
+        Arrays.stream(address.split(",")).forEach(a -> {
+            personalization.addTo(new Email(a));
+        });
+        personalization.setFrom(new Email(fromAddress));
+        personalization.setSubject(subject);
+
+        Mail mail = new Mail();//new Email(fromAddress), subject, new Email(address), new Content("text/plain", txt));
+        mail.setFrom(new Email(fromAddress));
+        mail.setSubject(subject);
+        mail.addContent(new Content("text/plain", txt));
+
+        mail.addPersonalization(personalization);
         if (attachments != null) {
             mail.addAttachments(attachments);
         }
