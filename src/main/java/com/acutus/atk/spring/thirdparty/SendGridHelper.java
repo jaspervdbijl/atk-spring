@@ -85,7 +85,6 @@ public class SendGridHelper {
         Arrays.stream(address.split(",")).forEach(a -> {
             personalization.addTo(new Email(a));
         });
-        personalization.setFrom(new Email(fromAddress));
         personalization.setSubject(subject);
 
         Mail mail = new Mail();//new Email(fromAddress), subject, new Email(address), new Content("text/plain", txt));
