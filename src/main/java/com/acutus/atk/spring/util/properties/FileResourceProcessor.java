@@ -2,7 +2,7 @@ package com.acutus.atk.spring.util.properties;
 
 import java.io.InputStream;
 
-import com.acutus.atk.io.IOUtil;
+import com.acutus.atk.util.IOUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;

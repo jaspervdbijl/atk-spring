@@ -80,22 +80,20 @@ public class SendGridHelper {
         return response;
     }
 
-    public Response sendEmailPlainTxt(String address, String subject, String txt, Attachments attachments) {
+    public Response sendEmailPlainTxt(String address, String subject, String txt, List<Attachments> attachments) {
         Personalization personalization = new Personalization();
         Arrays.stream(address.split(",")).forEach(a -> {
             personalization.addTo(new Email(a));
         });
         personalization.setSubject(subject);
 
-        Mail mail = new Mail();//new Email(fromAddress), subject, new Email(address), new Content("text/plain", txt));
+        Mail mail = new Mail();
         mail.setFrom(new Email(fromAddress));
         mail.setSubject(subject);
         mail.addContent(new Content("text/plain", txt));
 
         mail.addPersonalization(personalization);
-        if (attachments != null) {
-            mail.addAttachments(attachments);
-        }
+        attachments.stream().forEach(a -> mail.addAttachments(a));
         Response response = send(mail);
         Assert.isTrue(response.getStatusCode() >= 200 && response.getStatusCode() < 300, "Mail failed with error " + response.getBody());
         return response;
