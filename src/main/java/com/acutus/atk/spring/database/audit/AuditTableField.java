@@ -7,7 +7,7 @@ import com.acutus.atk.db.processor.AtkEntity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
-@AtkEntity(addAuditFields = true)
+@AtkEntity(enableAuditByUser = true)
 public class AuditTableField {
     @UID
     @Id

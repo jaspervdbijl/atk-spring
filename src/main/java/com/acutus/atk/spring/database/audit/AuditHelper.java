@@ -4,8 +4,6 @@ import com.acutus.atk.db.AbstractAtkEntity;
 import com.acutus.atk.db.AtkEnField;
 import com.acutus.atk.db.AtkEnFields;
 import com.acutus.atk.db.processor.AtkEntity;
-import com.acutus.atk.spring.database.audit.AuditTableEntity;
-import com.acutus.atk.spring.database.audit.AuditTableFieldEntity;
 
 import java.sql.Connection;
 import java.util.Base64;
@@ -26,7 +24,7 @@ public class AuditHelper {
 
     public static void audit(Connection connection, AbstractAtkEntity entity, boolean insert) {
         AtkEntity atkEntity = entity.getClass().getAnnotation(AtkEntity.class);
-        if (atkEntity != null && atkEntity.auditTable()) {
+        if (atkEntity != null && atkEntity.enableAuditing()) {
             AtkEnFields changed = insert ? entity.getEnFields().getSet() : entity.getEnFields().getChanged();
             AuditTableEntity auditTableEntity = new AuditTableEntity()
                     .setTableN(entity.getTableName())

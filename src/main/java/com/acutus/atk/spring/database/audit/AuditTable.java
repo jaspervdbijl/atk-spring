@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@AtkEntity(columnNamingStrategy = AtkEntity.ColumnNamingStrategy.CAMEL_CASE_UNDERSCORE,addAuditFields = true)
+@AtkEntity(columnNamingStrategy = AtkEntity.ColumnNamingStrategy.CAMEL_CASE_UNDERSCORE, enableAuditByUser = true)
 @Table()
 @Data
 public class AuditTable {
