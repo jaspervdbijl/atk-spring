@@ -82,7 +82,7 @@ public class SendGridHelper {
 
     public Response sendEmailPlainTxt(String address, String subject, String txt, List<Attachments> attachments) {
         Personalization personalization = new Personalization();
-        Arrays.stream(address.split(",")).forEach(a -> {
+        Arrays.stream(address.split("[,|;]")).forEach(a -> {
             personalization.addTo(new Email(a));
         });
         personalization.setSubject(subject);
