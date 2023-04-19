@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
@@ -91,9 +92,12 @@ public class SendGridHelper {
         mail.setFrom(new Email(fromAddress));
         mail.setSubject(subject);
         mail.addContent(new Content("text/plain", txt));
-
         mail.addPersonalization(personalization);
-        attachments.stream().forEach(a -> mail.addAttachments(a));
+
+        if(!CollectionUtils.isEmpty(attachments)) {
+            attachments.stream().forEach(a -> mail.addAttachments(a));
+        }
+
         Response response = send(mail);
         Assert.isTrue(response.getStatusCode() >= 200 && response.getStatusCode() < 300, "Mail failed with error " + response.getBody());
         return response;
