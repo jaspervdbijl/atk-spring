@@ -83,9 +83,7 @@ public class SendGridHelper {
 
     public Response sendEmailPlainTxt(String address, String subject, String txt, List<Attachments> attachments) {
         Personalization personalization = new Personalization();
-        Arrays.stream(address.split("[,|;]")).forEach(a -> {
-            personalization.addTo(new Email(a));
-        });
+        Arrays.stream(address.split("[,|;]")).forEach(a -> personalization.addTo(new Email(a)));
         personalization.setSubject(subject);
 
         Mail mail = new Mail();
@@ -94,7 +92,7 @@ public class SendGridHelper {
         mail.addContent(new Content("text/plain", txt));
         mail.addPersonalization(personalization);
 
-        if(!CollectionUtils.isEmpty(attachments)) {
+        if (!CollectionUtils.isEmpty(attachments)) {
             attachments.stream().forEach(a -> mail.addAttachments(a));
         }
 
