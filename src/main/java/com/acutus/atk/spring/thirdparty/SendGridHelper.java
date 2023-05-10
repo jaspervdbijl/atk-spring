@@ -114,11 +114,12 @@ public class SendGridHelper {
         return response;
     }
 
-    public ResponseEntity<String> sendTemplate(String templateId, Integer asmGroupId, List<Personalization> personalizationList, List<Attachments> attachments) {
+    public ResponseEntity<String> sendTemplate(String templateId, String subject, Integer asmGroupId, List<Personalization> personalizationList, List<Attachments> attachments) {
 
         Mail mail = new Mail();
         mail.setFrom(new Email(fromAddress));
         mail.setTemplateId(templateId);
+        mail.setSubject(subject);
         ASM asm = new ASM();
         asm.setGroupId(asmGroupId);
         asm.setGroupsToDisplay(new int[]{asmGroupId});
@@ -136,6 +137,7 @@ public class SendGridHelper {
         Personalization personalization = new Personalization();
         address.stream().forEach(a -> personalization.addTo(new Email(a)));
         personalization.setSubject(subject);
-        return sendTemplate(templateId, asmGroupId,Arrays.asList(personalization),attachments);
+        personalization.addDynamicTemplateData("subject",subject);
+        return sendTemplate(templateId, subject, asmGroupId,Arrays.asList(personalization),attachments);
     }
 }
