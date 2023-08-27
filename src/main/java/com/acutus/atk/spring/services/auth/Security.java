@@ -9,7 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
-import java.security.*;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.MessageDigest;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.regex.Pattern;
@@ -27,7 +32,7 @@ public class Security {
     @Value("${password.strength.message:password is at least 8 characters long. Has at least one special, one uppercase and one lowercase character}")
     private String passportStrengthMsg;
 
-    private Pattern passwordPattern = Pattern.compile(passportStrengthRegEx);
+    private final Pattern passwordPattern = Pattern.compile(passportStrengthRegEx);
 
     public static PublicKey generateRSAPublicKey(InputStream is) {
         try {
@@ -55,14 +60,14 @@ public class Security {
     }
 
     @SneakyThrows
-    public static byte[] signData(KeyPair keyPair, byte data[]) {
+    public static byte[] signData(KeyPair keyPair, byte[] data) {
         Signature sig = getSignature(keyPair);
         sig.update(data);
         return sig.sign();
     }
 
     @SneakyThrows
-    public static void verifySignedData(KeyPair keyPair, byte data[], byte signatureBytes[]) {
+    public static void verifySignedData(KeyPair keyPair, byte[] data, byte[] signatureBytes) {
         Signature sig = getSignature(keyPair);
         sig.initVerify(keyPair.getPublic());
         sig.update(data);
@@ -71,7 +76,7 @@ public class Security {
     }
 
     @SneakyThrows
-    public static String md5Hash(byte data[]) {
+    public static String md5Hash(byte[] data) {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(data);
         byte[] digest = md.digest();
