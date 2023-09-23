@@ -6,6 +6,7 @@ import com.acutus.atk.util.IOUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
 import static com.acutus.atk.util.AtkUtil.handle;
@@ -23,13 +24,14 @@ public class FileResourceProcessor implements BeanPostProcessor {
             if (field.getAnnotation(FileResource.class) != null) {
                 FileResource fs = field.getAnnotation(FileResource.class);
                 InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fs.value());
+                Assert.isTrue(is != null, "Could not load resource " + fs.value());
                 field.setAccessible(true);
                 if (field.getType().equals(byte[].class)) {
                     handle(() -> field.set(bean, IOUtil.readAvailable(is)));
                 } else if (field.getType().equals(String.class)) {
                     handle(() -> field.set(bean, new String(IOUtil.readAvailable(is))));
                 } else {
-                    throw new RuntimeException("Unsupported FileResoure type " + field.getType());
+                    throw new RuntimeException("Unsupported FileResource type " + field.getType());
                 }
                 field.setAccessible(false);
             }
