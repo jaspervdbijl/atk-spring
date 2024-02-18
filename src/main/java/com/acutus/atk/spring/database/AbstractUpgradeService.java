@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 import static com.acutus.atk.db.sql.SQLHelper.run;
 import static com.acutus.atk.util.AtkUtil.convertStackTraceToString;
 import static com.acutus.atk.util.AtkUtil.handle;
+import static com.acutus.atk.util.StringUtils.isEmpty;
 import static org.bouncycastle.util.io.Streams.readAll;
 
 @Component
@@ -97,7 +98,7 @@ public abstract class AbstractUpgradeService {
                 long runtime = System.currentTimeMillis();
                 Strings errors = new Strings();
                 String lines = new String(IOUtil.readAvailable(new FileInputStream(resource.getFile())));
-                Arrays.stream(lines.split("#GO")).forEach(l -> handle(() -> SQLHelper.execute(dataSource,l),
+                Arrays.stream(lines.split("#GO")).filter(l -> !isEmpty(l)).forEach(l -> handle(() -> SQLHelper.execute(dataSource,l),
                         (ex) -> errors.add(convertStackTraceToString(ex,1024))));
                 runtime = System.currentTimeMillis() - runtime;
                 SQLHelper.executeUpdate(dataSource,"insert into m_scripts(filename,exec_time,exec_duration,status,error_log) values (?,?,?,?,?)",
