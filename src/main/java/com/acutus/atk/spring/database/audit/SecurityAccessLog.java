@@ -16,7 +16,6 @@ public class SecurityAccessLog {
     @GeneratedValue()
     private Integer id;
 
-    private String action;
-    private String status;
+    private String action,detail,status,host;
 
 }
