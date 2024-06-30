@@ -1,11 +1,11 @@
 package com.acutus.atk.spring.services.auth;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.security.KeyPair;
 import java.security.PrivateKey;
