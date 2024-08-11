@@ -22,6 +22,7 @@ import org.springframework.core.io.support.ResourcePatternUtils;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+
 import javax.sql.DataSource;
 
 import java.io.File;
@@ -98,11 +99,14 @@ public abstract class AbstractUpgradeService {
                 long runtime = System.currentTimeMillis();
                 Strings errors = new Strings();
                 String lines = new String(IOUtil.readAvailable(new FileInputStream(resource.getFile())));
-                Arrays.stream(lines.split("#GO")).filter(l -> !isEmpty(l)).forEach(l -> handle(() -> SQLHelper.execute(dataSource,l),
-                        (ex) -> errors.add(convertStackTraceToString(ex,1024))));
+                Arrays.stream(lines.split("#GO")).filter(l -> !isEmpty(l)).forEach(l -> handle(() -> {
+                            log.warn("EXEC SCRIPTS: " + l);
+                            SQLHelper.execute(dataSource, l);
+                        },
+                        (ex) -> errors.add(convertStackTraceToString(ex, 1024))));
                 runtime = System.currentTimeMillis() - runtime;
-                SQLHelper.executeUpdate(dataSource,"insert into m_scripts(filename,exec_time,exec_duration,status,error_log) values (?,?,?,?,?)",
-                        resource.getFilename(),new Timestamp(System.currentTimeMillis()),runtime,errors.isEmpty() ? "P":"E",errors.toString("\n\n"));
+                SQLHelper.executeUpdate(dataSource, "insert into m_scripts(filename,exec_time,exec_duration,status,error_log) values (?,?,?,?,?)",
+                        resource.getFilename(), new Timestamp(System.currentTimeMillis()), runtime, errors.isEmpty() ? "P" : "E", errors.toString("\n\n"));
             }
         }
 
