@@ -47,7 +47,8 @@ public class DbValueProcessor implements BeanPostProcessor {
 
         String sysValue = getConfigFromDB(name,getDefault(value));
 
-        return field.getType().getMethod("valueOf", String.class).invoke(bean, sysValue);
+        return String.class.equals(field.getType()) ? sysValue
+                :  field.getType().getMethod("valueOf", String.class).invoke(bean, sysValue);
     }
 
     public Object postProcessAfterInitialization(Object bean, String beanName)
