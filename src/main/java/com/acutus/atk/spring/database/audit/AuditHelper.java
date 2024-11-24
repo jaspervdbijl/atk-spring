@@ -24,7 +24,7 @@ public class AuditHelper {
 
     public static void audit(Connection connection, AbstractAtkEntity entity, boolean insert) {
         AtkEntity atkEntity = entity.getClass().getAnnotation(AtkEntity.class);
-        if (atkEntity != null && atkEntity.enableAuditing()) {
+        if (atkEntity != null && atkEntity.auditChanges()) {
             AtkEnFields changed = insert ? entity.getEnFields().getSet() : entity.getEnFields().getChanged();
             AuditTableEntity auditTableEntity = new AuditTableEntity()
                     .setTableN(entity.getTableName())
