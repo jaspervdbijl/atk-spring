@@ -102,8 +102,7 @@ public abstract class AbstractUpgradeService {
                 Arrays.stream(lines.split("#GO")).filter(l -> !isEmpty(l)).forEach(l -> handle(() -> {
                             log.warn("EXEC SCRIPTS: " + l);
                             SQLHelper.execute(dataSource, l);
-                        },
-                        (ex) -> errors.add(convertStackTraceToString(ex, 1024))));
+                }));
                 runtime = System.currentTimeMillis() - runtime;
                 SQLHelper.executeUpdate(dataSource, "insert into m_scripts(filename,exec_time,exec_duration,status,error_log) values (?,?,?,?,?)",
                         resource.getFilename(), new Timestamp(System.currentTimeMillis()), runtime, errors.isEmpty() ? "P" : "E", errors.toString("\n\n"));
