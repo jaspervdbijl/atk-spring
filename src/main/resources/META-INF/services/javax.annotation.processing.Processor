@@ -1,0 +1,2 @@
+com.acutus.atk.entity.processor.AtkProcessor
+com.acutus.atk.db.processor.AtkEntityProcessor
