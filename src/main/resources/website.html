@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcuSoft.io | Software Engineering & AI Solutions</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%);
+        }
+
+        .client-logo {
+            filter: grayscale(100%) brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .client-logo:hover {
+            filter: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800">
+<!-- Navigation -->
+<nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+            <div class="flex-shrink-0 flex items-center">
+                <span class="text-2xl font-bold text-blue-900">AcuSoft<span class="text-blue-500">.io</span></span>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-center space-x-8">
+                    <a href="#services" class="text-blue-900 hover:text-blue-600 px-3 py-2 font-medium">Services</a>
+                    <a href="#about" class="text-blue-900 hover:text-blue-600 px-3 py-2 font-medium">About</a>
+                    <a href="#clients" class="text-blue-900 hover:text-blue-600 px-3 py-2 font-medium">Clients</a>
+                    <a href="#contact"
+                       class="bg-blue-600 text-white px-6 py-2 rounded-md font-medium hover:bg-blue-700 transition">Contact</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button class="text-blue-900">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div id="vanta-globe" class="hero-gradient pt-32 pb-24 md:pb-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Engineering the Future with AI</h1>
+            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-10">Cutting-edge software solutions and
+                artificial intelligence to transform your business</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact"
+                   class="bg-white text-blue-700 px-8 py-3 rounded-md font-bold hover:bg-blue-50 transition">Get
+                    Started</a>
+                <a href="#services"
+                   class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md font-bold hover:bg-white/10 transition">Our
+                    Services</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Our Expertise</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">We deliver innovative solutions that drive digital
+                transformation</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <i data-feather="code" class="text-blue-600 w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Software Engineering</h3>
+                <p class="text-gray-600">Custom-built applications designed for performance, scalability and security to
+                    meet your unique business needs.</p>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <i data-feather="cpu" class="text-blue-600 w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Artificial Intelligence</h3>
+                <p class="text-gray-600">Leverage machine learning and AI to automate processes, gain insights and
+                    enhance decision-making.</p>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <i data-feather="cloud" class="text-blue-600 w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Cloud Solutions</h3>
+                <p class="text-gray-600">Scalable cloud infrastructure and services to optimize your operations and
+                    reduce IT overhead.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1" data-aos="fade-right">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-6">About AcuSoft.io</h2>
+                <p class="text-gray-600 mb-6">Founded in 2020, AcuSoft.io is a premier software engineering and
+                    artificial intelligence company based in Pretoria, South Africa.</p>
+                <p class="text-gray-600 mb-6">We specialize in developing innovative digital solutions that help
+                    businesses streamline operations, enhance customer experiences, and drive growth through
+                    technology.</p>
+                <p class="text-gray-600 mb-8">Our team of expert engineers and data scientists combine technical
+                    excellence with deep industry knowledge to deliver measurable results.</p>
+                <div class="flex flex-wrap gap-4">
+                    <div class="bg-white px-6 py-3 rounded-lg shadow-sm">
+                        <div class="flex items-center">
+                            <i data-feather="award" class="text-blue-600 mr-2"></i>
+                            <span class="font-medium">5+ Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-lg shadow-sm">
+                        <div class="flex items-center">
+                            <i data-feather="users" class="text-blue-600 mr-2"></i>
+                            <span class="font-medium">Expert Team</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2" data-aos="fade-left">
+                <img src="http://static.photos/technology/1024x576/42" alt="About AcuSoft.io"
+                     class="rounded-xl shadow-lg w-full">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Clients Section -->
+<section id="clients" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Trusted By Industry Leaders</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">We're proud to partner with innovative organizations
+                across various sectors</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center" data-aos="fade-up">
+            <div class="flex justify-center">
+                <a href="https://www.icetech.io" target="_blank" rel="noopener noreferrer">
+                    <img width="242" height="47"
+                         src="https://www.icetech.io/wp-content/uploads/2023/07/cropped-Asset-33ICE-Tech_Logo-Black-Type-242x47.png"
+                         class="custom-logo" alt="ICE Tech" decoding="async"
+                         srcset="https://www.icetech.io/wp-content/uploads/2023/07/cropped-Asset-33ICE-Tech_Logo-Black-Type-242x47.png 242w, https://www.icetech.io/wp-content/uploads/2023/07/cropped-Asset-33ICE-Tech_Logo-Black-Type-300x58.png 300w, https://www.icetech.io/wp-content/uploads/2023/07/cropped-Asset-33ICE-Tech_Logo-Black-Type-1024x199.png 1024w, https://www.icetech.io/wp-content/uploads/2023/07/cropped-Asset-33ICE-Tech_Logo-Black-Type-768x149.png 768w, https://www.icetech.io/wp-content/uploads/2023/07/cropped-Asset-33ICE-Tech_Logo-Black-Type.png 1060w"
+                         sizes="(max-width: 242px) 100vw, 242px">
+                </a>
+            </div>
+            <div class="flex justify-center">
+                <a href="https://jalia.co.za" target="_blank" rel="noopener noreferrer">
+                    <img class="cover-img__image relative w-[200px] h-[70px] object-cover"
+                         src="https://media.licdn.com/dms/image/v2/D4D3DAQG0hNtqPZp2Aw/image-scale_191_1128/B4DZjqRoySHsAc-/0/1756277149711/jalia_tech_cover?e=2147483647&v=beta&t=tOEhRFcMOIH1hzdAogHF1FVcluaLouyHNMaGA4BtdYg"
+                         fetchpriority="auto"
+                         data-embed-id="cover-image"
+                         alt="Jalia Technologies (Pty) Ltd’s cover photo"
+                         tabindex="0">
+                </a>
+            </div>
+            <div class="flex justify-center">
+                <a href="https://www.harmony.co.za" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                         x="0px" y="0px" width="200px" height="70px" viewBox="-0.5 -1.241 200 70" xml:space="preserve"
+                         id="svg-replaced-0" class="custom-logo style-svg replaced-svg svg-replaced-0"> <defs> </defs>
+                        <polygon fill="currentColor"
+                                 points="102.607,39.247 108.531,39.247 114.108,45.602 119.36,39.247 124.706,39.247 124.706,55.444 118.393,55.444 118.468,46.818 112.422,53.41 106.387,46.801 106.387,55.444 102.659,55.444"></polygon>
+                        <polygon fill="currentColor"
+                                 points="170.095,39.247 178.047,39.255 182.34,44.808 187.308,39.247 192.102,39.247 192.978,39.247 194.808,39.247 194.808,39.991 193.992,39.991 193.992,42.614 192.907,42.614 192.907,39.991 192.251,39.991 184.436,48.009 184.436,55.5 177.901,55.5 177.901,48.795"></polygon>
+                        <path fill="currentColor"
+                              d="M81.552,39.247h13.99c6.147,0.887,7.994,8.804,1.027,10.646c0,0,4.203,2.226,6.755,5.553h-8.736 c-0.112-0.143-0.232-0.282-0.36-0.42c-0.708-0.625-1.419-1.198-2.129-1.723c-2.023-1.308-4.217-2.113-4.217-2.113l0.001,4.254 h-6.146v-6.792c-1.719-0.298-2.812-0.386-4.421-0.316l4.421,7.108h-8.745l-3.754-5.723c-4.966,1.65-8.69,4.531-9.827,5.425 L59.147,55.5h-5.133l10.771-16.253l6.567-0.03l3.585,5.766c-2.286,0.408-4.951,1.271-7.136,2.546l-1.783-2.212l-4.395,6.276 c1.077-0.883,14.248-9.464,28.006-1.817c-3.636-2.56-4.895-3.389-8.078-4.493V39.247z M88.297,46.435 c8.153,0.323,7.381-4.526,0-4.165V46.435z"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" fill="currentColor"
+                              d="M125.753,47.205c0-4.703,4.322-8.514,9.652-8.514h4.52 c5.332,0,9.655,3.811,9.655,8.514c0,4.702-4.323,8.515-9.655,8.515h-4.52C130.076,55.72,125.753,51.907,125.753,47.205 M133.043,47.238c0,2.764,2.031,5.005,4.537,5.005c2.505,0,4.536-2.241,4.536-5.005c0-2.767-2.031-5.007-4.536-5.007 C135.075,42.231,133.043,44.472,133.043,47.238"></path>
+                        <polygon fill="currentColor"
+                                 points="150.534,39.255 150.534,55.513 154.733,55.513 154.733,47.2 163.56,56.027 169.883,56.027 169.883,39.247 165.023,39.247 165.023,46.832 157.372,39.183"></polygon>
+                        <polygon fill="currentColor"
+                                 points="195.012,39.247 195.012,42.614 196.026,42.614 196.026,40.104 196.039,40.104 196.615,42.614 197.395,42.614 197.973,40.104 197.986,40.104 197.986,42.614 199,42.614 199,39.247 197.449,39.247 197.01,41.243 197,41.243 196.563,39.247"></polygon>
+                        <polygon fill="currentColor"
+                                 points="48.357,34.932 54.746,34.932 54.746,43.633 54.839,47.366 54.746,55.498 48.357,55.498 48.357,47.366 40.254,47.366 40.254,55.498 33.258,55.498 33.258,34.932 40.254,34.932 40.254,43.633 48.357,43.633"></polygon>
+                        <path fill="#D21110"
+                              d="M43.109,0.085c2.48-0.482,4.881,1.138,5.364,3.617l3.432,17.677c0.482,2.479-1.138,4.881-3.619,5.364 l-0.352,0.068c-2.479,0.482-4.881-1.138-5.363-3.618l-1.204-6.197L8.621,65.547c-1.414,2.093-4.403,2.579-6.498,1.166l-0.004-0.005 c-2.095-1.414-2.792-4.384-1.379-6.479l32.777-48.594l-6.248,1.215c-2.479,0.482-4.881-1.139-5.363-3.618l-0.068-0.352 c-0.481-2.479,1.138-4.881,3.618-5.362L43.109,0.085z"></path> </svg>
+                </a>
+            </div>
+            <div class="flex justify-center">
+                <a href="http://tshiamisotrust.com/" target="_blank" rel="noopener noreferrer">
+                    <img class="logo lazyloaded"
+                         src="https://www.tshiamisotrust.com/wp-content/themes/tshiamiso/assets/img/logo.svg"
+                         data-src="https://www.tshiamisotrust.com/wp-content/themes/tshiamiso/assets/img/logo.svg">
+                </a>
+            </div>
+            <div class="flex justify-center">
+                <a href="https://www.cellstop.co.za" target="_blank" rel="noopener noreferrer">
+                    <img src="https://cellstop.co.za/sites/all/themes/cellstop/logo.png" alt="CellStop">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-blue-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-12">
+            <div data-aos="fade-right">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
+                <p class="text-blue-200 mb-8">Ready to transform your business with cutting-edge technology? Contact us
+                    today to discuss your project.</p>
+
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-800 p-3 rounded-lg">
+                            <i data-feather="map-pin" class="w-5 h-5"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold">Our Location</h3>
+                            <p class="text-blue-200">17 Midas Avenue, Olympus<br>Pretoria, 0081</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-800 p-3 rounded-lg">
+                            <i data-feather="phone" class="w-5 h-5"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold">Call Us</h3>
+                            <p class="text-blue-200">012 991 4400</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-800 p-3 rounded-lg">
+                            <i data-feather="mail" class="w-5 h-5"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="font-bold">Email Us</h3>
+                            <p class="text-blue-200">info@acusoft.io</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos="fade-left">
+                <form class="bg-white p-8 rounded-xl shadow-lg" id="contactForm">
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-black">
+                        <p id="nameError" class="text-red-500 text-sm mt-1 hidden">Please enter your name</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900">
+                        <p id="emailError" class="text-red-500 text-sm mt-1 hidden">Please enter a valid email</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                        <textarea id="message" name="message" rows="4" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"></textarea>
+                        <p id="messageError" class="text-red-500 text-sm mt-1 hidden">Please enter your message</p>
+                    </div>
+
+                    <button type="submit" id="submitBtn"
+                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-bold hover:bg-blue-700 transition">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-blue-950 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">AcuSoft.io</h3>
+                <p class="text-blue-300">Innovative software engineering and AI solutions to power your digital
+                    transformation.</p>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-blue-300 hover:text-white transition">Software Development</a></li>
+                    <li><a href="#" class="text-blue-300 hover:text-white transition">AI Solutions</a></li>
+                    <li><a href="#" class="text-blue-300 hover:text-white transition">Cloud Services</a></li>
+                    <li><a href="#" class="text-blue-300 hover:text-white transition">Consulting</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="text-blue-300 hover:text-white transition">About Us</a></li>
+                    <li><a href="#clients" class="text-blue-300 hover:text-white transition">Clients</a></li>
+                    <li><a href="#" class="text-blue-300 hover:text-white transition">Careers</a></li>
+                    <li><a href="#" class="text-blue-300 hover:text-white transition">Blog</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="bg-blue-900 p-2 rounded-full hover:bg-blue-800 transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="bg-blue-900 p-2 rounded-full hover:bg-blue-800 transition">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                    <a href="#" class="bg-blue-900 p-2 rounded-full hover:bg-blue-800 transition">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="bg-blue-900 p-2 rounded-full hover:bg-blue-800 transition">
+                        <i data-feather="github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-t border-blue-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-blue-400">© 2023 AcuSoft.io. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="text-blue-400 hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="text-blue-400 hover:text-white transition">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Form validation
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        let isValid = true;
+
+        // Validate name
+        if (name === '') {
+            document.getElementById('nameError').classList.remove('hidden');
+            isValid = false;
+        } else {
+            document.getElementById('nameError').classList.add('hidden');
+        }
+
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailError').classList.remove('hidden');
+            isValid = false;
+        } else {
+            document.getElementById('emailError').classList.add('hidden');
+        }
+
+        // Validate message
+        if (message === '') {
+            document.getElementById('messageError').classList.remove('hidden');
+            isValid = false;
+        } else {
+            document.getElementById('messageError').classList.add('hidden');
+        }
+
+        if (isValid) {
+            // Form is valid, show success message
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            // Simulate form submission (replace with actual form submission logic)
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent!';
+                submitBtn.classList.add('bg-green-600');
+
+                // Show thank you message
+                const thankYouMsg = document.createElement('div');
+                thankYouMsg.className = 'mt-4 p-4 bg-green-100 text-green-800 rounded-lg';
+                thankYouMsg.textContent = 'Thank you, we\'ll be in touch soon!';
+                document.getElementById('contactForm').appendChild(thankYouMsg);
+
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('contactForm').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                    submitBtn.classList.remove('bg-green-600');
+                    thankYouMsg.remove();
+                }, 5000);
+            }, 1500);
+        }
+    });
+
+    // Initialize Vanta.js globe
+    VANTA.GLOBE({
+        el: "#vanta-globe",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x3b82f6,
+        backgroundColor: 0x1e3a8a,
+        size: 0.8
+    });
+
+    // Initialize AOS and Feather Icons
+    document.addEventListener('DOMContentLoaded', function () {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    });
+</script>
+</body>
+</html>
