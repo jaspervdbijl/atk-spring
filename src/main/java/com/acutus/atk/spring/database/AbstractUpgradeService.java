@@ -27,6 +27,7 @@ import javax.sql.DataSource;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -98,7 +99,10 @@ public abstract class AbstractUpgradeService {
             if (!executed.contains(resource.getFilename())) {
                 long runtime = System.currentTimeMillis();
                 Strings errors = new Strings();
-                String lines = new String(IOUtil.readAvailable(new FileInputStream(resource.getFile())));
+                String lines;
+                try (InputStream in = resource.getInputStream()) {
+                    lines = new String(IOUtil.readAvailable(in));
+                }
                 Arrays.stream(lines.split("#GO")).filter(l -> !isEmpty(l)).forEach(l -> handle(() -> {
                             log.warn("EXEC SCRIPTS: " + l);
                             SQLHelper.execute(dataSource, l);
